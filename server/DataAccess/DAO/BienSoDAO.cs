@@ -200,5 +200,6 @@ namespace DataAccess.DAO
                 return listBienSo;
             }
         }
+
     }
 }

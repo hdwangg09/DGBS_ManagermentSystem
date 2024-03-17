@@ -87,3 +87,4 @@ C:\Users\hdwan\OneDrive\Desktop\PRN231\Coding\Class\DGBS_ManagermentSystem\serve
 C:\Users\hdwan\OneDrive\Desktop\PRN231\Coding\Class\DGBS_ManagermentSystem\server\Server\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 C:\Users\hdwan\OneDrive\Desktop\PRN231\Coding\Class\DGBS_ManagermentSystem\server\Server\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\hdwan\OneDrive\Desktop\PRN231\Coding\Class\DGBS_ManagermentSystem\Server\Server\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\hdwan\OneDrive\Desktop\PRN231\Coding\Class\DGBS_ManagermentSystem\server\Server\obj\Debug\net6.0\Server.sourcelink.json

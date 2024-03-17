@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Server\\Server.csproj": {}
+    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj": {
+    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\hdwan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\obj\\",
+        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hdwan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -93,14 +93,14 @@
         }
       }
     },
-    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\DataAccess\\DataAccess.csproj",
+        "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\hdwan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hdwan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -117,8 +117,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj"
+              "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj"
               }
             }
           }
@@ -172,14 +172,14 @@
         }
       }
     },
-    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Server\\Server.csproj": {
+    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Server\\Server.csproj",
+        "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\hdwan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Server\\obj\\",
+        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hdwan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -196,11 +196,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj"
+              "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj"
               },
-              "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\DataAccess\\DataAccess.csproj"
               }
             }
           }

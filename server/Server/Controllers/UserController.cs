@@ -24,17 +24,16 @@ namespace Server.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<BaseResponse<object>>> Login([FromBody] UserReq loginReq)
         {
-            BaseResponse<object> response = null;
+            BaseResponse<object> response = new BaseResponse<object>();
             try
             {
-                response = new BaseResponse<object>();
                 if (loginReq == null || string.IsNullOrEmpty(loginReq.SoDienThoai.Trim())
                     || string.IsNullOrEmpty(loginReq.Password.Trim()))
                 {
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Request không hợp lệ.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
                 bool isLogin = nguoiDungRepo.isLogin(loginReq);
                 if (isLogin)
@@ -42,14 +41,14 @@ namespace Server.Controllers
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Đăng nhập thành công.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
                 else
                 {
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
-                    response.Message = "Sai tài khoản hoặc mật khẩu.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    response.Message = "Sai tài khoản hoặc mật khẩu";
+                    return response;
                 }
             }
             catch (Exception ex)
@@ -57,7 +56,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                return response;
             }
 
         }
@@ -65,11 +64,11 @@ namespace Server.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<BaseResponse<object>>> Register([FromBody] UserReq registerReq)
         {
-            BaseResponse<object> response = null;
+            BaseResponse<object>  response = new BaseResponse<object>();
             try
             {
                 // check dữ liệu vào
-                response = new BaseResponse<object>();
+               
                 if (registerReq == null || string.IsNullOrEmpty(registerReq.HoTen.Trim())
                     || string.IsNullOrEmpty(registerReq.SoDienThoai.Trim())
                       || string.IsNullOrEmpty(registerReq.Password.Trim())
@@ -79,7 +78,7 @@ namespace Server.Controllers
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Request không hợp lệ.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
                 //kiểm tra email và sđt tồn tại chưa
                 bool isExistingEmail = nguoiDungRepo.isExistingEmail(registerReq.Email);
@@ -88,7 +87,7 @@ namespace Server.Controllers
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Email đã tồn tại.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
                 bool isExistingPhone = nguoiDungRepo.isExistingPhone(registerReq.SoDienThoai);
                 if (isExistingPhone)
@@ -96,7 +95,7 @@ namespace Server.Controllers
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Số điện thoại đã tồn tại.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
 
                 //Kiểm tra email, số điện thoại, họ tên, password hợp lệ không.
@@ -106,7 +105,7 @@ namespace Server.Controllers
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Email không hợp lệ.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
                 bool isValidPhone = CommonUtils.IsValidVietnamesePhoneNumber(registerReq.SoDienThoai);
                 if (!isValidPhone)
@@ -114,7 +113,7 @@ namespace Server.Controllers
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Số điện thoại không hợp lệ.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
                 bool isValidName = CommonUtils.IsValidFullName(registerReq.HoTen);
                 if (!isValidName)
@@ -122,7 +121,7 @@ namespace Server.Controllers
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Họ tên chứa ký tự không hợp lệ.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
                 bool isValidPass = registerReq.Password.Length >= 6 ? true : false;
                 if (!isValidPass)
@@ -130,7 +129,7 @@ namespace Server.Controllers
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Password phải chứa 6 ký tự.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
 
                 //thực hiện đăng ký thông tin người dùng
@@ -140,14 +139,14 @@ namespace Server.Controllers
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Đăng ký thành công.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
                 else
                 {
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Đăng ký không thành công, vui lòng thử lại.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                    return response;
                 }
             }
             catch (Exception ex)
@@ -155,7 +154,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Đăng ký không thành công, vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                return response;
             }
 
         }
@@ -163,17 +162,16 @@ namespace Server.Controllers
         [HttpGet("admin/user")]
         public async Task<ActionResult<BaseResponse<object>>> Admin_UserList()
         {
-            BaseResponse<object> response = null;
+            BaseResponse<object> response = new BaseResponse<object>();
+
             try
             {
-                response = new BaseResponse<object>();
-
                 List<UserDTO> nguoiDung = nguoiDungRepo.GetUserList();
                 response.Error = false;
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy danh sách người dùng thành công.";
                 response.Data = nguoiDung;
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
 
             }
             catch (Exception ex)
@@ -181,7 +179,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
             }
 
         }
@@ -189,18 +187,17 @@ namespace Server.Controllers
         [HttpGet("admin/user/{userId}")]
         public async Task<ActionResult<BaseResponse<object>>> Admin_GetUserDetails(int userId)
         {
-            BaseResponse<object> response = null;
+            BaseResponse<object> response = new BaseResponse<object>();
             try
             {
                 // check dữ liệu vào
-                response = new BaseResponse<object>();
                 UserDTO userDetails = nguoiDungRepo.GetUserDetails(userId);
                 response.Error = false;
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy danh sách người dùng thành công.";
                 response.Data = userDetails;
                 //response.Data = nguoiDung;
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
 
             }
             catch (Exception ex)
@@ -208,7 +205,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Đăng ký không thành công, vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
             }
 
         }
@@ -216,22 +213,21 @@ namespace Server.Controllers
         [HttpPost("admin/user/update")]
         public async Task<ActionResult<BaseResponse<object>>> Admin_UpdateUser([FromBody] NguoiDung userReq)
         {
-            BaseResponse<object> response = null;
+            BaseResponse<object> response = new BaseResponse<object>();
             try
             {
-                response = new BaseResponse<object>();
                 if (!(userReq.NguoiDungId >= 0))
                 {
                     response.Error = true;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Request không hợp lệ.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                   return response;
                 }
                 nguoiDungRepo.UpdateNguoiDung(userReq);
                 response.Error = false;
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Cập nhật người dùng thành công.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
 
             }
             catch (Exception ex)
@@ -239,7 +235,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
             }
 
         }

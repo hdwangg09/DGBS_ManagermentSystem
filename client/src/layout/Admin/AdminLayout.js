@@ -1,12 +1,11 @@
-// import { useState } from "react";
-import logo from "../../assets/images/LoGoDauGia.png";
+import logo from "../../assets/images/LogoDauGia.png";
 import { Spin } from "antd"; // Import Spin
-import AdminHeader from "../HeaderAdmin/AdminHeader";
+import AdminHeader from "./AdminHeader";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
-import { TbSoccerField } from "react-icons/tb";
+// import { TbSoccerField } from "react-icons/tb";
 
 import { PieChartFilled } from "@ant-design/icons";
 
@@ -25,55 +24,55 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const itemsAdmin = [
-  getItem(
-    <NavLink
-      to="/manager/dashboard"
-      className="flex items-center transform hover:translate-x-4 bg-transparent rounded-r-3xl transition-transform ease-in duration-200 text-blue-500 hover:text-blue-800"
-    >
-      Thống kê
-    </NavLink>,
-    "/manager/dashboard",
-    <Link to="/manager/dashboard">
-      <PieChartFilled />
-    </Link>
-  ),
-  getItem(
-    <NavLink
-      to="/manager/users"
-      className="flex items-center transform hover:translate-x-4 bg-transparent rounded-r-3xl transition-transform ease-in duration-200 text-blue-500 hover:text-blue-800"
-    >
-      Quản lý Tài Khoản
-    </NavLink>,
-    "/manager/users",
-    <Link to="/manager/users">
-      <i className="fa-solid fa-user"></i>
-    </Link>
-  ),
-  getItem(
-    <Link
-      className="flex  items-center transform hover:translate-x-4 bg-transparent rounded-r-3xl transition-transform ease-in duration-200 text-blue-500 hover:text-blue-800"
-      to="/manager/pitchs"
-    >
-      Quản lý Sân bóng
-    </Link>,
-    "/manager/pitchs",
-    <Link to="/manager/pitchs">
-      <TbSoccerField />
-    </Link>
-  ),
+  //   getItem(
+  //     <NavLink
+  //       to="/manager/dashboard"
+  //       className="flex items-center transform hover:translate-x-4 bg-transparent rounded-r-3xl transition-transform ease-in duration-200 text-blue-500 hover:text-blue-800"
+  //     >
+  //       Thống kê
+  //     </NavLink>,
+  //     "/manager/dashboard",
+  //     <Link to="/manager/dashboard">
+  //       <PieChartFilled />
+  //     </Link>
+  //   ),
+  //   getItem(
+  //     <NavLink
+  //       to="/manager/users"
+  //       className="flex items-center transform hover:translate-x-4 bg-transparent rounded-r-3xl transition-transform ease-in duration-200 text-blue-500 hover:text-blue-800"
+  //     >
+  //       Quản lý Tài Khoản
+  //     </NavLink>,
+  //     "/manager/users",
+  //     <Link to="/manager/users">
+  //       <i className="fa-solid fa-user"></i>
+  //     </Link>
+  //   ),
+  //   getItem(
+  //     <Link
+  //       className="flex  items-center transform hover:translate-x-4 bg-transparent rounded-r-3xl transition-transform ease-in duration-200 text-blue-500 hover:text-blue-800"
+  //       to="/manager/pitchs"
+  //     >
+  //       Quản lý Sân bóng
+  //     </Link>,
+  //     "/manager/pitchs",
+  //     <Link to="/manager/pitchs">
+  //       <TbSoccerField />
+  //     </Link>
+  //   ),
 
-  getItem(
-    <NavLink
-      className="flex  items-center transform hover:translate-x-4 bg-transparent rounded-r-3xl transition-transform ease-in duration-200 text-blue-500 hover:text-blue-800"
-      to="/manager/services"
-    >
-      Quản lý Dịch vụ
-    </NavLink>,
-    "/manager/services",
-    <Link to="/manager/services">
-      <i className="fa-solid fa-wine-bottle"></i>
-    </Link>
-  ),
+  //   getItem(
+  //     <NavLink
+  //       className="flex  items-center transform hover:translate-x-4 bg-transparent rounded-r-3xl transition-transform ease-in duration-200 text-blue-500 hover:text-blue-800"
+  //       to="/manager/services"
+  //     >
+  //       Quản lý Dịch vụ
+  //     </NavLink>,
+  //     "/manager/services",
+  //     <Link to="/manager/services">
+  //       <i className="fa-solid fa-wine-bottle"></i>
+  //     </Link>
+  //   ),
 ];
 
 const headerStyle = {

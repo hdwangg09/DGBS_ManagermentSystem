@@ -32,7 +32,7 @@ namespace Server.Controllers
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy danh sách thành công.";
                 response.Data = dauGiaList;
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
 
             }
             catch (Exception ex)
@@ -40,7 +40,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
             }
 
         }
@@ -58,7 +58,7 @@ namespace Server.Controllers
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy thông tin thành công.";
                 response.Data = dauGium;
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
 
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
             }
 
         }
@@ -95,14 +95,14 @@ namespace Server.Controllers
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Thêm phiên đấu giá thành công.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                   return response;
                 }
                 else
                 {
                     response.Error = true;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Có lỗi, vui lòng thử lại.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                   return response;
                 }
 
             }
@@ -111,7 +111,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
             }
 
         }
@@ -138,14 +138,14 @@ namespace Server.Controllers
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Cập nhật thành công.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                   return response;
                 }
                 else
                 {
                     response.Error = true;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Có lỗi, vui lòng thử lại.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                   return response;
                 }
 
             }
@@ -154,7 +154,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
             }
         }
         
@@ -171,14 +171,14 @@ namespace Server.Controllers
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Đổi trạng thái thành công.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                   return response;
                 }
                 else
                 {
                     response.Error = false;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Có lỗi vui lòng thử lại sau.";
-                    return StatusCode((int)response.Code.GetValueOrDefault(), response);
+                   return response;
                 }
 
             }
@@ -187,7 +187,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
             }
 
         }
@@ -203,7 +203,7 @@ namespace Server.Controllers
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy danh sách thành công.";
                 response.Data = dauGiaList;
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
 
             }
             catch (Exception ex)
@@ -211,7 +211,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-                return StatusCode((int)response.Code.GetValueOrDefault(), response);
+               return response;
             }
 
         }

@@ -1,10 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { publicRoutes, privateRoutes } from "./routes/routes";
 import { Fragment, useEffect, useState, useRef } from "react";
-import UserLayout from "./layout/UserLayout/UserLayout";
+import UserLayout from "./layout/Public/UserLayout";
 import { ToastContainer } from "react-toastify";
 import { useLocation } from "react-router-dom";
-import { handleRefresh } from "./redux/actions/userAction";
 
 function App() {
   const { pathname } = useLocation();
@@ -26,7 +25,7 @@ function App() {
               path={route.path}
               element={
                 <Layout>
-                  <Page userToken={userToken || null} />
+                  <Page />
                 </Layout>
               }
             />
@@ -42,13 +41,13 @@ function App() {
               key={index}
               path={route.path}
               element={
-                isAuthenticated ? (
-                  <Layout>
-                    <Page user={user} userToken={userToken} />
-                  </Layout>
-                ) : (
-                  <Navigate to="/login" />
-                )
+                // isAuthenticated ? (
+                <Layout>
+                  <Page />
+                </Layout>
+                // ) : (
+                //   <Navigate to="/login" />
+                // )
               }
             />
           );
