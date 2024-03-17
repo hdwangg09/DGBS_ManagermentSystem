@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VR1s4u7rdLazKAl/qrHI2TPCwgJEvnVrHxZPwJTB/MM+zcdKHJhV8H2Mvc4tuUVNtenGOZpWptVzKFd3R7fNCQ==",
+  "dgSpecHash": "qA4WW3szpi/lMGyJI6oeG8/T/UxSHUTd6bosrUxB1r2CDzLqx+GjrxOKOMMG7kuJREwrukvducwVjY5vd1x8ew==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\DataAccess\\DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hdwan\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\hdwan\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

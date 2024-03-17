@@ -7,10 +7,14 @@ const login = (soDienThoai, password) => {
         password,
     });
 };
+const register = (HoTen, Email, SoDienThoai, Password) => {
+    return axios.post(`register`, { HoTen, Email, SoDienThoai, Password });
+};
 const getListUser = () => {
     return axios.get(`admin/user`);
 };
 export {
     login,
+    register,
     getListUser,
 };

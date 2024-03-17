@@ -4,24 +4,25 @@ import { Form, Input, Button } from "antd";
 import { Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { login, getListUser } from "../../../services/public/account/loginServices"
+import { login } from "../../../services/public/account/loginServices"
 const Login = () => {
     const [form] = Form.useForm();
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const onLogin = async (values) => {
+        setIsLoading(true);
         try {
-            console.log(values.SoDienThoai, values.Password)
             const response = await login(values.SoDienThoai, values.Password);
-            // const response = await getListUser();
-            console.log(response)
             if (response && response.code === 200) {
                 navigate("/");
                 toast.success(response.message);
-            } else {
+            } else if (response && response.code !== 200) {
                 toast.error(response.message);
+            } else {
+                toast.error("Vui lòng thử lại sau");
             }
+            setIsLoading(false);
         } catch (error) {
             console.error(error);
         }
@@ -43,7 +44,7 @@ const Login = () => {
                         >
                             {/* UserNAME */}
                             <Form.Item
-                                label="SoDienThoai"
+                                label="Số điện thoại"
                                 name="SoDienThoai"
                                 rules={[
                                     {
@@ -53,7 +54,7 @@ const Login = () => {
                                 ]}
                                 className="font-semibold"
                             >
-                                <Input className="w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                <Input className="w-full px-4 py-2 mt-2 text-blue-500 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </Form.Item>
 
                             {/* PASSWORD */}

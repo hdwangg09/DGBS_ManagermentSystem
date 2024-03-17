@@ -81,14 +81,6 @@ namespace Server.Controllers
                     return response;
                 }
                 //kiểm tra email và sđt tồn tại chưa
-                bool isExistingEmail = nguoiDungRepo.isExistingEmail(registerReq.Email);
-                if (isExistingEmail)
-                {
-                    response.Error = true;
-                    response.Code = HttpStatusCode.BadRequest;
-                    response.Message = "Email đã tồn tại.";
-                    return response;
-                }
                 bool isExistingPhone = nguoiDungRepo.isExistingPhone(registerReq.SoDienThoai);
                 if (isExistingPhone)
                 {
@@ -97,6 +89,15 @@ namespace Server.Controllers
                     response.Message = "Số điện thoại đã tồn tại.";
                     return response;
                 }
+                bool isExistingEmail = nguoiDungRepo.isExistingEmail(registerReq.Email);
+                if (isExistingEmail)
+                {
+                    response.Error = true;
+                    response.Code = HttpStatusCode.BadRequest;
+                    response.Message = "Email đã tồn tại.";
+                    return response;
+                }
+               
 
                 //Kiểm tra email, số điện thoại, họ tên, password hợp lệ không.
                 bool isValidEmail = CommonUtils.isValidEmail(registerReq.Email);

@@ -18,5 +18,7 @@ namespace Common.DTOs
         public string? LoaiXeName { get; set; }
         public int? TrangThai { get; set; }
         public DateTime? ThoiGianBatDau { get; set; }
+
+        public decimal? GiaKhoiDiem { get; set; }
     }
 }

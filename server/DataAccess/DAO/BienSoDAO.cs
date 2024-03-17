@@ -183,11 +183,16 @@ namespace DataAccess.DAO
                         .Include(b => b.LoaiXe)
                         .Include(b => b.ThanhPho)
                         .Where(b => b.DauGium != null && b.DauGium.TrangThai == Constants.DauGiaStatus.ChoDauGia)
+                        .OrderBy(d => d.DauGium.ThoiGianBatDau)
                         .Select(d => new BienSoDTO
                         {
+
                             SoBien = d.SoBien,
                             ThanhPhoName = d.ThanhPho.TenThanhPho,
                             LoaiXeName = d.LoaiXe.LoaiXeName,
+                            ThoiGianBatDau = d.DauGium.ThoiGianBatDau,
+                            GiaKhoiDiem = d.DauGium.GiaKhoiDiem
+
                         })
                         .ToList();
 

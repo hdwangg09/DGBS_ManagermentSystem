@@ -134,9 +134,7 @@ public partial class DgbsMsVer01Context : DbContext
         {
             entity.ToTable("Nguoi_Dung");
 
-            entity.Property(e => e.NguoiDungId)
-                .ValueGeneratedNever()
-                .HasColumnName("nguoi_dung_id");
+            entity.Property(e => e.NguoiDungId).HasColumnName("nguoi_dung_id");
             entity.Property(e => e.DiaChi)
                 .HasMaxLength(150)
                 .HasColumnName("dia_chi");
