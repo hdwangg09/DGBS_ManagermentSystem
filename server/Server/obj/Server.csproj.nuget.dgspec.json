@@ -11,7 +11,7 @@
         "projectName": "Common",
         "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\hdwan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\obj\\",
+        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hdwan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -100,7 +100,7 @@
         "projectName": "DataAccess",
         "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\hdwan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hdwan\\AppData\\Roaming\\NuGet\\NuGet.Config",

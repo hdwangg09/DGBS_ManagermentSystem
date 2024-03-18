@@ -16,6 +16,6 @@ namespace DataAccess.Repositories.DauGiaRepo
         public bool AddNewDauGia(DauGium newDauGia) => DauGiaDAO.Instance.AddNewDauGia(newDauGia);
         public bool UpdateDauGia(DauGium dauGia) => DauGiaDAO.Instance.UpdateDauGia(dauGia);
         public bool ChangeStatusDauGia(int id, int newStatus) => DauGiaDAO.Instance.ChangeStatusDauGia(id, newStatus);
-        public List<DauGiaDTO> GetListKetQuaDauGia() => DauGiaDAO.Instance.GetListKetQuaDauGia();
+        public List<KetQuaDauGiaDTO> GetListKetQuaDauGia() => DauGiaDAO.Instance.GetListKetQuaDauGia();
     }
 }

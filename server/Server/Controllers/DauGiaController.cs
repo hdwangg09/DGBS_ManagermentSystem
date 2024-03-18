@@ -198,7 +198,7 @@ namespace Server.Controllers
             BaseResponse<object> response = new BaseResponse<object>(); ;
             try
             {
-                List<DauGiaDTO> dauGiaList = _dauGiaRepository.GetListKetQuaDauGia();
+                List<KetQuaDauGiaDTO> dauGiaList = _dauGiaRepository.GetListKetQuaDauGia();
                 response.Error = false;
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy danh sách thành công.";

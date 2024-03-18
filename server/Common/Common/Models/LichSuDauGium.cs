@@ -11,7 +11,7 @@ public partial class LichSuDauGium
 
     public int? NguoiDungId { get; set; }
 
-    public string? SoTien { get; set; }
+    public decimal? SoTien { get; set; }
 
     public DateTime? ThoiGian { get; set; }
 

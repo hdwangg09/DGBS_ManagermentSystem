@@ -153,12 +153,15 @@ namespace DataAccess.DAO
                         .Include(b => b.LoaiXe)
                         .Include(b => b.ThanhPho)
                         .Include(b => b.DauGium)
-                        .Where(b => b.DauGium.ThoiGianBatDau <= targetTime)
+                        .Where(b => b.DauGium.ThoiGianBatDau <= targetTime && b.DauGium.TrangThai == Constants.DauGiaStatus.ChoDauGia)
+                        .OrderBy(d => d.DauGium.ThoiGianBatDau)
                         .Select(d => new BienSoDTO
                         {
                             SoBien = d.SoBien,
                             ThanhPhoName = d.ThanhPho.TenThanhPho,
-                            LoaiXeName = d.LoaiXe.LoaiXeName
+                            LoaiXeName = d.LoaiXe.LoaiXeName,
+                            ThoiGianBatDau = d.DauGium.ThoiGianBatDau,
+                            GiaKhoiDiem = d.DauGium.GiaKhoiDiem
                         })
                         .ToList();
 
@@ -205,6 +208,7 @@ namespace DataAccess.DAO
                 return listBienSo;
             }
         }
+      
 
     }
 }

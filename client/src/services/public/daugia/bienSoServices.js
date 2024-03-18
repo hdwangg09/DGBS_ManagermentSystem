@@ -9,9 +9,13 @@ const getListBienSoDauGiaSau24H = () => {
 const getListBienSoDangDauGia = () => {
     return axios.get(`user/bienso/now`);
 };
+const getListKetQuaDauGia = () => {
+    return axios.get(`user/daugia/ketqua`);
+};
 
 export {
     getListBienSoCongBo,
     getListBienSoDauGiaSau24H,
-    getListBienSoDangDauGia
+    getListBienSoDangDauGia,
+    getListKetQuaDauGia
 };

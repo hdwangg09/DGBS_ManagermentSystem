@@ -17,6 +17,7 @@ namespace DataAccess.Repositories.DauGiaRepo
         bool UpdateDauGia(DauGium dauGia);
         bool ChangeStatusDauGia(int id, int newStatus);
         //User
-        List<DauGiaDTO> GetListKetQuaDauGia();
+        List<KetQuaDauGiaDTO> GetListKetQuaDauGia();
+        List<DauGiaDTO> GetLítDangDauGia();
     }
 }

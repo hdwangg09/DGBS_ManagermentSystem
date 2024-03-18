@@ -175,23 +175,30 @@ namespace DataAccess.DAO
                 return false;
             }
         }
-        public List<DauGiaDTO> GetListKetQuaDauGia()
+        public List<KetQuaDauGiaDTO> GetListKetQuaDauGia()
         {
-            List<DauGiaDTO> listKetQua = null;
+            List<KetQuaDauGiaDTO> listKetQua = null;
             try
             {
-                using(var context =  new DgbsMsVer01Context())
+                using (var context = new DgbsMsVer01Context())
                 {
-                         listKetQua = context.DauGia
+                    listKetQua = context.DauGia
                         .Include(d => d.NguoiThangCuocNavigation)
                         .Include(d => d.BienSo)
+                        .Include(d => d.LichSuDauGia)
                         .Where(d => d.NguoiThangCuocNavigation != null && d.TrangThai == Constants.DauGiaStatus.DaKetThuc)
-                        .Select(d => new DauGiaDTO
+                        .Select(d => new KetQuaDauGiaDTO
                         {
                             BienSo = d.BienSo.SoBien,
                             LoaiXe = d.BienSo.LoaiXe.LoaiXeName,
+                            ThanhPho = d.BienSo.ThanhPho.TenThanhPho,
                             ThoiGianKetThuc = d.ThoiGianKetThuc,
-                            NguoiThangCuoc = d.NguoiThangCuocNavigation.HoTen
+                            NguoiThangCuoc = d.NguoiThangCuocNavigation.HoTen,
+                            GiaCuoiCung = d.LichSuDauGia
+                                            .Where(ls => ls.NguoiDungId == d.NguoiThangCuocNavigation.NguoiDungId)
+                                            .GroupBy(ls => ls.NguoiDungId)
+                                            .Select(group => group.Max(ls => ls.SoTien)) 
+                                            .FirstOrDefault(),
                         })
                         .ToList();
                 }

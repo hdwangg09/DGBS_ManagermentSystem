@@ -22,16 +22,16 @@ function DanhSachCongBo() {
 
     const getListDanhSachCongBoBienSo = async () => {
         setLoading(true);
-        const res = await getListBienSoCongBo();
+        try {
+            const res = await getListBienSoCongBo();
 
-        if (res && res.data) {
-            // const listBookingData = res.data.map((booking) => ({
-            //     ...booking,
-            //     key: booking.bookingId,
-            // }));
-            setDanhSachCongBo(res.data);
-            setLoading(false);
+            if (res && res.code === 200 && res.data) {
+                setDanhSachCongBo(res.data);
+            }
+        } catch (error) {
+            console.log(error)
         }
+        setLoading(false);
     };
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -174,7 +174,7 @@ function DanhSachCongBo() {
             title: "Loại Xe",
             dataIndex: "loaiXeName",
             width: 100,
-            ...getColumnSearchProps("pitchName"),
+            ...getColumnSearchProps("loaiXeName"),
             render: (text, record) => <p>{text}</p>,
         },
         {
@@ -232,28 +232,31 @@ function DanhSachCongBo() {
     ];
     return (
         <>
-            <div className="flex flex-col container mx-auto my-24 w-screen  md:w-9/12">
-                <div className="mb-6 text-2xl font-medium">
-                    <p className="text-lg md:text-2xl font-semibold text-blue-500 flex justify-center md:justify-normal">
-                        Danh sách biển số
-                    </p>
+            <div className=" bg-gradient-to-r from-cyan-100 via-purple-100 to-rose-100 min-h-screen">
+                <div className="flex flex-col container mx-auto my-24 w-screen  md:w-9/12 mt-36">
+                    <div className="mb-6 text-2xl font-medium">
+                        <p className="text-lg md:text-2xl font-semibold text-blue-500 flex justify-center md:justify-normal">
+                            Danh sách công bố biển số
+                        </p>
+                    </div>
+                    <Spin spinning={loading} tip="Loading...">
+                        {/* {!loading && ( */}
+                        <Table
+                            dataSource={danhSachCongBo}
+                            columns={columns}
+                            bordered
+                            scroll={{
+                                x: 900,
+                            }}
+                            pagination={{
+                                pageSize: 8,
+                            }}
+                        />
+                        {/* )} */}
+                    </Spin>
                 </div>
-                <Spin spinning={loading} tip="Loading...">
-                    {/* {!loading && ( */}
-                    <Table
-                        dataSource={danhSachCongBo}
-                        columns={columns}
-                        bordered
-                        scroll={{
-                            x: 900,
-                        }}
-                        pagination={{
-                            pageSize: 8,
-                        }}
-                    />
-                    {/* )} */}
-                </Spin>
             </div>
+
         </>
     );
 }

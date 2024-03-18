@@ -4,11 +4,11 @@ function UserLayout({ children }) {
     return (
         <>
             <div className="flex flex-col min-h-screen  ">
-                <div className="mb-32">
+                <div>
                     <UserHeader />
                 </div>
 
-                <div>{children}</div>
+                {children}
 
             </div>
         </>

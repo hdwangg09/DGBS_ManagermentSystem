@@ -27,7 +27,7 @@ function UserHeader() {
     return (
         <>
             <div id="top"></div>
-            <div className=" bg-gray-50 fixed w-full z-10 top-0  border-b border-gray-100 text-base h-auto  md:h-16  shadow-md">
+            <div className=" bg-gray-50 fixed w-full z-10 top-0  border-b border-gray-100 text-base h-auto  md:h-16 shadow-md bg-gradient-to-r from-cyan-200 via-purple-200 to-rose-200">
                 <div className=" flex flex-wrap w-screen items-center h-16 container  md:mx-auto px-0 md:px-2">
                     <div className="w-1/4 md:w-1/3 h-full flex items-center">
                         <NavLink to="/" className="flex items-center">
@@ -82,7 +82,7 @@ function UserHeader() {
                                 </NavLink>
 
                             </Tooltip>
-                            <Tooltip
+                            {/* <Tooltip
                                 placement="bottom"
                                 title={"Đang đấu giá"}
                             >
@@ -95,12 +95,12 @@ function UserHeader() {
                                     }
                                 >
                                     <li className="flex items-center">
-                                        {/* <AiFillHome className="w-auto h-8 flex items-center " /> */}
+                                        // <AiFillHome className="w-auto h-8 flex items-center " /> 
                                         <p className="w-auto flex items-center">Sắp đấu giá</p>
                                     </li>
                                 </NavLink>
 
-                            </Tooltip>
+                            </Tooltip>  */}
                             <Tooltip
                                 placement="bottom"
                                 title={"Phòng đấu giá"}
@@ -114,7 +114,6 @@ function UserHeader() {
                                     }
                                 >
                                     <li className="flex items-center">
-                                        {/* <AiFillHome className="w-auto h-8 flex items-center " /> */}
                                         <p className="w-auto flex items-center">Phòng đấu giá</p>
                                     </li>
                                 </NavLink>
@@ -125,7 +124,7 @@ function UserHeader() {
                                 title={"Kết quả đấu giá"}
                             >
                                 <NavLink
-                                    to="/daugia/room"
+                                    to="/daugia/result"
                                     className={({ isActive }) =>
                                         isActive
                                             ? "text-sm md:bg-transparent text-blue-700 md:p-0 border-b-2 border-blue-700  flex justify-center font-semibold focus:outline-none"
