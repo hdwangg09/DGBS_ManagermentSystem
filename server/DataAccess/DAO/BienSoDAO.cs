@@ -153,7 +153,8 @@ namespace DataAccess.DAO
                         .Include(b => b.LoaiXe)
                         .Include(b => b.ThanhPho)
                         .Include(b => b.DauGium)
-                        .Where(b => b.DauGium.ThoiGianBatDau <= targetTime && b.DauGium.TrangThai == Constants.DauGiaStatus.ChoDauGia)
+                        //.Where(b => b.DauGium.ThoiGianBatDau <= targetTime && b.DauGium.TrangThai == Constants.DauGiaStatus.ChoDauGia)
+                        .Where(b => b.DauGium.TrangThai == Constants.DauGiaStatus.ChoDauGia)
                         .OrderBy(d => d.DauGium.ThoiGianBatDau)
                         .Select(d => new BienSoDTO
                         {
@@ -175,7 +176,7 @@ namespace DataAccess.DAO
             }
         }
 
-        public List<BienSoDTO> GetListBienSoDauGia()
+        public List<BienSoDTO> GetListDanhSachCongBo()
         {
             List<BienSoDTO> listBienSo = null;
             try
@@ -185,8 +186,7 @@ namespace DataAccess.DAO
                     listBienSo = context.BienSos
                         .Include(b => b.LoaiXe)
                         .Include(b => b.ThanhPho)
-                        .Where(b => b.DauGium != null && b.DauGium.TrangThai == Constants.DauGiaStatus.ChoDauGia)
-                        .OrderBy(d => d.DauGium.ThoiGianBatDau)
+                        .Where(b => b.TrangThai == Constants.BienSoStatus.Mo)
                         .Select(d => new BienSoDTO
                         {
 

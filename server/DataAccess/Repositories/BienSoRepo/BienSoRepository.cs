@@ -17,9 +17,7 @@ namespace DataAccess.Repositories.BienSoRepo
         public void AddNewBienSo(BienSo bienSo) => BienSoDAO.Instance.AddNewBienSo(bienSo);
         public void UpdateBienSo(BienSo bienso) => BienSoDAO.Instance.UpdateBienSo(bienso);
         public bool ChangeStatusBienSo(int bienSoId, int newStatus) => BienSoDAO.Instance.ChangeStatusBienSo(bienSoId, newStatus);
-
         public List<BienSoDTO> GetListBienSoSapDauGia() => BienSoDAO.Instance.GetListBienSoSapDauGia();
-
-        public List<BienSoDTO> GetListBienSoDauGia() => BienSoDAO.Instance.GetListBienSoDauGia();
+        public List<BienSoDTO> GetListDanhSachCongBo() => BienSoDAO.Instance.GetListDanhSachCongBo();
     }
 }

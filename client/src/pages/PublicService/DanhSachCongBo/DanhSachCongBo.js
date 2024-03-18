@@ -148,7 +148,6 @@ function DanhSachCongBo() {
         return format(date, "dd/MM/yyyy");
     }
     function formatCurrency(price) {
-        // Sử dụng hàm toLocaleString để định dạng số thành chuỗi theo định dạng tiền tệ
         return price.toLocaleString("vi-VN", {
             style: "currency",
             currency: "VND",
@@ -177,58 +176,23 @@ function DanhSachCongBo() {
             ...getColumnSearchProps("loaiXeName"),
             render: (text, record) => <p>{text}</p>,
         },
-        {
-            title: "Giá khởi điểm",
-            dataIndex: "giaKhoiDiem",
-            width: 100,
-            sorter: {
-                compare: (a, b) => a.giaKhoiDiem - b.giaKhoiDiem,
-                multiple: 2,
-            },
-            ...getColumnSearchProps("giaKhoiDiem"),
-            render: (text, record) => <p>{formatCurrency(text)}</p>,
-        },
+        // {
+        //     title: "Giá khởi điểm",
+        //     dataIndex: "giaKhoiDiem",
+        //     width: 100,
+        //     sorter: {
+        //         compare: (a, b) => a.giaKhoiDiem - b.giaKhoiDiem,
+        //         multiple: 2,
+        //     },
+        //     ...getColumnSearchProps("giaKhoiDiem"),
+        //     render: (text, record) => <p>{formatCurrency(text)}</p>,
+        // },
         {
             title: "Thời gian dự kiến",
             dataIndex: "thoiGianBatDau",
             width: 100,
             render: (record) => formatDateToHHMMDDMMYYYY(record),
         },
-        // {
-        //     title: "",
-        //     key: "action",
-        //     width: 80,
-        //     render: (record) => (
-        //         <Space size="small">
-        //             <NavLink to={`details/${record.bookingId}`}>
-        //                 <button
-        //                     type="button"
-        //                     className="text-white
-        //         bg-gradient-to-r from-indigo-300 to-blue-400 
-        //         hover:from-pink-400 hover:to-indigo-300 
-        //         focus:ring-4 focus:outline-none focus:ring-blue-300
-        //         font-medium rounded-lg text-sm px-3 py-2 "
-        //                 >
-        //                     Chi tiết
-        //                 </button>
-        //             </NavLink>
-        //             {record.status === 0 || record.status === 2 ? (
-        //                 <NavLink to={`update/${record.bookingId}`}>
-        //                     <button
-        //                         type="button"
-        //                         className="text-white 
-        //         bg-gradient-to-r from-red-400 to-pink-400 
-        //         hover:from-pink-500 hover:to-rose-500 
-        //         focus:ring-4 focus:outline-none focus:ring-rose-300 
-        //         font-medium rounded-lg text-sm px-3 py-2 "
-        //                     >
-        //                         Sửa
-        //                     </button>
-        //                 </NavLink>
-        //             ) : null}
-        //         </Space>
-        //     ),
-        // },
     ];
     return (
         <>

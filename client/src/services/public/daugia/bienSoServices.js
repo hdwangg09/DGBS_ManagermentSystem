@@ -7,7 +7,7 @@ const getListBienSoDauGiaSau24H = () => {
     return axios.get(`user/bienso/today`);
 };
 const getListBienSoDangDauGia = () => {
-    return axios.get(`user/bienso/now`);
+    return axios.get(`user/daugia/now`);
 };
 const getListKetQuaDauGia = () => {
     return axios.get(`user/daugia/ketqua`);

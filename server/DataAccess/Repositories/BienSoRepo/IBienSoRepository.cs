@@ -18,7 +18,7 @@ namespace DataAccess.Repositories.BienSoRepo
         bool ChangeStatusBienSo(int bienSoId, int newStatus);
 
         List<BienSoDTO>GetListBienSoSapDauGia();
-        List<BienSoDTO> GetListBienSoDauGia();
+        List<BienSoDTO> GetListDanhSachCongBo();
 
     }
 }

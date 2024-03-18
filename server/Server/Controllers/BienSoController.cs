@@ -151,13 +151,13 @@ namespace Server.Controllers
 
         }
         [HttpGet("user/bienso")]
-        public async Task<ActionResult<BaseResponse<object>>> User_BienSoList()
+        public async Task<ActionResult<BaseResponse<object>>> User_DanhSachCongBo()
         {
             BaseResponse<object> response = new BaseResponse<object>(); ;
             try
             {
 
-                List<BienSoDTO> bienSoDauGia = _bienSoRepository.GetListBienSoDauGia();
+                List<BienSoDTO> bienSoDauGia = _bienSoRepository.GetListDanhSachCongBo();
                 response.Error = false;
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy danh sách thành công.";

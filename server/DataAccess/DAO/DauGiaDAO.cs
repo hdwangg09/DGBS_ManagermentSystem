@@ -210,5 +210,39 @@ namespace DataAccess.DAO
                 return null;
             }
         }
+        public List<DauGiaDTO> GetListDangDauGia()
+        {
+            List<DauGiaDTO> listDangDauGia = null;
+            try
+            {
+                using (var context = new DgbsMsVer01Context())
+                {
+                    listDangDauGia = context.DauGia
+                        .Include(d => d.NguoiThangCuocNavigation)
+                        .Include(d => d.BienSo)
+                        .Include(d => d.LichSuDauGia)
+                        .Where(d => d.NguoiThangCuocNavigation == null && d.TrangThai == Constants.DauGiaStatus.DangDauGia)
+                        .Select(d => new DauGiaDTO
+                        {
+                            PhienDauGiaId = d.PhienDauGiaId,
+                            BienSo = d.BienSo.SoBien,
+                            LoaiXe = d.BienSo.LoaiXe.LoaiXeName,
+                            ThanhPho = d.BienSo.ThanhPho.TenThanhPho,
+                            ThoiGianBatDau = d.ThoiGianBatDau,
+                            ThoiGianKetThuc = d.ThoiGianKetThuc,
+                            NguoiThangCuoc = d.NguoiThangCuocNavigation.HoTen,
+                            GiaKhoiDiem = d.GiaKhoiDiem,
+                            GiaCaoNhat = d.LichSuDauGia.Max(ls => ls.SoTien)
+                        })
+                        .ToList();
+                }
+                return listDangDauGia;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+                return null;
+            }
+        }
     }
 }

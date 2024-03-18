@@ -215,6 +215,29 @@ namespace Server.Controllers
             }
 
         }
+        [HttpGet("user/daugia/now")]
+        public async Task<ActionResult<BaseResponse<object>>> User_DangDauGiaList()
+        {
+            BaseResponse<object> response = new BaseResponse<object>(); ;
+            try
+            {
+                List<DauGiaDTO> dauGiaList = _dauGiaRepository.GetListDangDauGia();
+                response.Error = false;
+                response.Code = HttpStatusCode.OK;
+                response.Message = "Lấy danh sách thành công.";
+                response.Data = dauGiaList;
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                response.Error = true;
+                response.Code = HttpStatusCode.BadRequest;
+                response.Message = "Có lỗi,vui lòng thử lại.";
+                return response;
+            }
+
+        }
 
     }
 }

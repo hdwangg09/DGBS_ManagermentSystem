@@ -36,7 +36,7 @@ function UserHeader() {
                                 className="h-12 mr-1 md:mr-3 rounded-full w-12"
                                 alt="App Logo"
                             />
-                            <span className="self-center text-sm md:hidden lg:block lg:text-xl text-blue-700  font-semibold whitespace-nowrap">
+                            <span className="self-center text-sm md:hidden lg:block lg:text-lg text-blue-700  font-semibold whitespace-nowrap">
                                 Đấu Giá Biển Số
                             </span>
                         </NavLink>
@@ -106,7 +106,7 @@ function UserHeader() {
                                 title={"Phòng đấu giá"}
                             >
                                 <NavLink
-                                    to="/daugia/room"
+                                    to="/daugia/now"
                                     className={({ isActive }) =>
                                         isActive
                                             ? "text-sm md:bg-transparent text-blue-700 md:p-0 border-b-2 border-blue-700  flex justify-center font-semibold focus:outline-none"

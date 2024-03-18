@@ -21,6 +21,7 @@ namespace Common.DTOs
         public DateTime? NgayTao { get; set; }
 
         public decimal? GiaKhoiDiem { get; set; }
+        public decimal? GiaCaoNhat { get; set; }
 
         public DateTime? ThoiGianBatDau { get; set; }
 
