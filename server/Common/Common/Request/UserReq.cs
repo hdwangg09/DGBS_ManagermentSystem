@@ -8,7 +8,7 @@ namespace Common.Request
 {
     public class UserReq
     {
-
+        public int? NguoiDungId{ get; set; }
         public string? HoTen { get; set; }
 
         public bool? GioiTinh { get; set; }

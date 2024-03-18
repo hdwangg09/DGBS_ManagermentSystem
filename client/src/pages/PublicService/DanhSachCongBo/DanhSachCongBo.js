@@ -214,6 +214,7 @@ function DanhSachCongBo() {
                             }}
                             pagination={{
                                 pageSize: 8,
+                                showSizeChanger: false,
                             }}
                         />
                         {/* )} */}

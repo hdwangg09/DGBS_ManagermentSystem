@@ -30,8 +30,8 @@ function Register() {
     }
     return (
         <>
-            <div>
-                <div className="w-full p-12 m-auto bg-white rounded-3xl shadow-blue-400/50 ring-2 ring-gray-100 max-w-xl shadow-xl mx-auto">
+            <div className="flex items-center justify-center bg-gradient-to-r from-cyan-100 via-purple-100 to-rose-100 min-h-screen">
+                <div className="w-full p-8 m-auto bg-white rounded-3xl shadow-blue-400/50 ring-2 ring-gray-100 max-w-xl shadow-xl mx-auto">
                     <Spin spinning={isLoading} tip="Loading...">
                         <h1 className="text-3xl font-semibold text-center from-blue-200 via-blue-500 to-blue-200 bg-gradient-to-r bg-clip-text text-transparent mb-4">
                             Đăng ký

@@ -6,7 +6,6 @@ import { Tooltip } from "antd";
 import Tippy from "@tippyjs/react/headless";
 import TippyComponent from "../../components/Tippy/TippyComponent";
 import { useEffect, useState } from "react";
-
 function UserHeader() {
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
@@ -16,14 +15,18 @@ function UserHeader() {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-
-    // useEffect(() => {
-    //     if (user && user.auth === false) {
-    //         navigate("/login");
-    //     }
-    // }, [user.auth]);
-
-
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('userLogined');
+        if (loggedInUser) {
+            const userDataParsed = JSON.parse(loggedInUser);
+            setUserData(userDataParsed);
+        }
+    }, []);
+    const handleLogout = () => {
+        localStorage.removeItem('userLogined');
+        setUserData(null);
+        window.location.href = '/login';
+    }
     return (
         <>
             <div id="top"></div>
@@ -142,7 +145,7 @@ function UserHeader() {
                     </div>
 
                     <div className="w-2/3 md:w-1/3 flex justify-end h-full items-center ">
-                        {/* {user && user.userName ? (
+                        {userData ? (
                             <Tippy
                                 interactive
                                 delay={[0, 500]}
@@ -159,56 +162,26 @@ function UserHeader() {
                                                     aria-labelledby="dropdownLargeButton"
                                                 >
                                                     <NavLink
-                                                        to="/userProfile"
+                                                        to="#"
                                                         className="flex items-center"
                                                     >
                                                         <li className="w-full ">
                                                             <div className="block px-4 py-2 hover:bg-gray-100 hover:text-blue-600 text-lg ">
-                                                                <i className="fa-solid fa-user mr-3"></i>Thông
-                                                                tin cá nhân
+                                                                <i className="fa-solid fa-user mr-3"></i>Thông tin cá nhân
                                                             </div>
                                                         </li>
                                                     </NavLink>
-                                                    {+roleId === 1 ? (
-                                                        <NavLink
-                                                            to="/manager/dashboard"
-                                                            className="flex items-center"
-                                                        >
-                                                            <li className="w-full">
-                                                                <div className="block px-4 py-2 hover:bg-gray-100 hover:text-blue-600 text-lg">
-                                                                    <i className="fa-solid fa-bars-progress mr-3"></i>
-                                                                    Quản lý
-                                                                </div>
-                                                            </li>
-                                                        </NavLink>
-                                                    ) : +roleId === 3 ? (
-                                                        <NavLink
-                                                            to="/manager/bookings"
-                                                            className="flex items-center"
-                                                        >
-                                                            <li className="w-full">
-                                                                <div className="block px-4 py-2 hover:bg-gray-100 hover:text-blue-600 text-lg">
-                                                                    <i className="fa-solid fa-clock-rotate-left mr-3"></i>
-                                                                    Quản lý
-                                                                </div>
-                                                            </li>
-                                                        </NavLink>
-                                                    ) : (
-                                                        <NavLink
-                                                            to="/bookingHistory"
-                                                            className="flex items-center"
-                                                        >
-                                                            <li className="w-full">
-                                                                <div className="w-full block px-4 py-2 hover:bg-gray-100 hover:text-blue-600 text-lg">
-                                                                    <i className="fa-solid fa-clock-rotate-left mr-3"></i>
-                                                                    Lịch sử đặt sân
-                                                                </div>
-                                                            </li>
-                                                        </NavLink>
-                                                    )}
-
                                                     <NavLink
-                                                        to="/changePassword"
+                                                        to="/#"
+                                                        className="flex items-center"
+                                                    >
+                                                        <div className="w-full block px-4 py-2 text-lg  text-gray-700 hover:bg-gray-100 hover:text-blue-600  ">
+                                                            <i className="fa-solid fa-unlock-keyhole mr-3"></i>
+                                                            Lịch sử đấu giá
+                                                        </div>
+                                                    </NavLink>
+                                                    <NavLink
+                                                        to="/#"
                                                         className="flex items-center"
                                                     >
                                                         <div className="w-full block px-4 py-2 text-lg  text-gray-700 hover:bg-gray-100 hover:text-blue-600  ">
@@ -219,7 +192,7 @@ function UserHeader() {
                                                 </ul>
                                                 <div className="py-1">
                                                     <NavLink
-                                                        // onClick={() => handleLogout()}
+                                                        onClick={() => handleLogout()}
                                                         className="flex items-center"
                                                     >
                                                         <div className="block w-full px-4 py-2 text-lg  text-red-400 hover:bg-gray-100 hover:text-red-600 ">
@@ -234,38 +207,37 @@ function UserHeader() {
                                 )}
                             >
                                 <div className="flex flex-col items-center justify-center">
-                                    {/* <div className="text-xl font-medium ">
-                    {userData.userName}
-                  </div> */}
-                        {/* <img
+                                    <div className="text-xl font-medium ">
+                                        {userData.userName}
+                                    </div>
+                                    <img
                                         className="h-12 w-12 rounded-full   "
                                         src={(userData && userData.avatarUrl) || DefaultUser}
                                         alt="Ảnh đại diện"
                                     />
                                 </div>
                             </Tippy>
-                        ) : (  */}
-                        <div className="flex">
-                            <NavLink to="/login">
-                                <button
-                                    type="button"
-                                    className="text-white text-sm md:text-base bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-2 md:px-4 py-1 md:py-2 text-center mr-2 "
-                                >
-                                    Đăng nhập
-                                </button>
-                            </NavLink>
-                            <NavLink to="/register">
-                                <button
-                                    type="button"
-                                    className="text-white text-sm md:text-base bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-2 md:px-4 py-1 md:py-2 text-center md:mr-0 "
-                                >
-                                    Đăng ký
-                                </button>
-                            </NavLink>
-                        </div>
-                        {/* // )} */}
+                        ) : (
+                            <div className="flex">
+                                <NavLink to="/login">
+                                    <button
+                                        type="button"
+                                        className="text-white text-sm md:text-base bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-2 md:px-4 py-1 md:py-2 text-center mr-2 "
+                                    >
+                                        Đăng nhập
+                                    </button>
+                                </NavLink>
+                                <NavLink to="/register">
+                                    <button
+                                        type="button"
+                                        className="text-white text-sm md:text-base bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-2 md:px-4 py-1 md:py-2 text-center md:mr-0 "
+                                    >
+                                        Đăng ký
+                                    </button>
+                                </NavLink>
+                            </div>
+                        )}
                     </div>
-
                 </div>
             </div>
         </>

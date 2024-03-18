@@ -13,7 +13,7 @@ namespace DataAccess.Repositories.NguoiDungRepo
     public class NguoiDungRepository : INguoiDungRepository
     {
         //login
-        public bool isLogin(UserReq user) => UserDAO.Instance.isLogin(user);
+        public UserLoginDTO isLogin(UserReq user) => UserDAO.Instance.isLogin(user);
 
         //register
         public bool isRegister(UserReq user) => UserDAO.Instance.isRegister(user);

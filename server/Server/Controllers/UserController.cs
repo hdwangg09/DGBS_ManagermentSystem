@@ -35,12 +35,13 @@ namespace Server.Controllers
                     response.Message = "Request không hợp lệ.";
                     return response;
                 }
-                bool isLogin = nguoiDungRepo.isLogin(loginReq);
-                if (isLogin)
+                UserLoginDTO isLogin = nguoiDungRepo.isLogin(loginReq);
+                if (isLogin != null)
                 {
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Đăng nhập thành công.";
+                    response.Data = isLogin;
                     return response;
                 }
                 else

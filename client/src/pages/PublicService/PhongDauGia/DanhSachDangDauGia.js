@@ -7,19 +7,19 @@ import { Button, Input, Space, Table, Tag, Pagination } from "antd";
 import { format } from "date-fns";
 import { getListBienSoDangDauGia } from "../../../services/public/daugia/bienSoServices";
 import { Spin } from "antd";
+import ModalNotificationLogin from "./ModalNotificationLogin";
 
 function DanhSachDangDauGia() {
     const [loading, setLoading] = useState(true);
     const [listDangDauGia, setListDangDauGia] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedDate, setSelectedDate] = useState("");
     const [isSearching, setIsSearching] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(4);
+    const [pageSize, setPageSize] = useState(8);
     const [isInputEmpty, setIsInputEmpty] = useState(true);
-    const [dataLoaded, setDataLoaded] = useState(false);
-    const [contentShow, setContentShow] = useState("");
+    const [remainingTime, setRemainingTime] = useState(null);
+    const [userLogined, setUserLogined] = useState(false);
 
     useEffect(() => {
         getListDangDauGiaInfor();
@@ -77,6 +77,55 @@ function DanhSachDangDauGia() {
     const currentList = isSearching
         ? filteredData.slice(startIndex, endIndex)
         : listDangDauGia.slice(startIndex, endIndex);
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+    const getRemainingTime = (endTime) => {
+        const now = new Date();
+        const end = new Date(endTime);
+        const differenceInSeconds = (end - now) / 1000;
+
+        if (differenceInSeconds <= 0) {
+            return "Đã kết thúc";
+        }
+
+        const days = Math.floor(differenceInSeconds / (3600 * 24));
+        const hours = Math.floor((differenceInSeconds % (3600 * 24)) / 3600);
+        const minutes = Math.floor((differenceInSeconds % 3600) / 60);
+        const seconds = Math.floor(differenceInSeconds % 60);
+
+        let mess = ``;
+        if (seconds > 0) {
+            mess = `${seconds} giây`;
+            if (minutes > 0) {
+                mess = `${minutes} phút ${seconds} giây`;
+                if (hours > 0) {
+                    mess = `${hours} giờ ${minutes} phút ${seconds} giây`;
+                    if (days > 0) {
+                        mess = `${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`
+                    }
+                }
+            }
+        }
+        return mess;
+    };
+
+    const handleToJoinDauGia = (phienDauGiaId) => {
+        if (userLogined) {
+            navigator(`/daugia/room`)
+        } else {
+            handleOpenModalNotificationLogin();
+        }
+    }
+    const [isShowModalNotificationLogin, setIsShowModalNotificationLogin] = useState(false);
+
+    const handleOpenModalNotificationLogin = () => {
+        setIsShowModalNotificationLogin(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsShowModalNotificationLogin(false);
+    }
     return (
         <>
             <div className=" bg-gradient-to-r from-cyan-100 via-purple-100 to-rose-100 min-h-screen">
@@ -164,7 +213,7 @@ function DanhSachDangDauGia() {
                                                     </div>
                                                 </div>
                                                 <p className="mb-4 font-sans text-sm italic antialiased font-normal leading-relaxed text-gray-700">
-                                                    Kết thúc sau: 12 phút
+                                                    Kết thúc sau: {getRemainingTime(data?.thoiGianKetThuc)}
                                                 </p>
                                                 {/* <p className="block mb-2 font-sans text-xl antialiased  tracking-normal text-gray-900">
                                         hihi
@@ -176,14 +225,12 @@ function DanhSachDangDauGia() {
                                                     Giá cao nhất: {formatCurrency(data?.giaCaoNhat)}
                                                 </p>
                                                 <div className="text-center">
-                                                    <button
-                                                        className="inline-flex items-center
-                                        gap-2 p-3 font-sans text-xs font-bold text-center text-cyan-400 uppercase align-middle transition-all rounded-lg select-none hover:bg-blue-500/10 active:bg-blue-500/20"
+                                                    <button className="inline-flex items-centergap-2 p-3 font-sans text-xs font-bold text-center text-cyan-400 uppercase align-middle transition-all 
+                                                                        rounded-lg select-none hover:bg-blue-500/10 active:bg-blue-500/20"
+                                                        onClick={() => handleToJoinDauGia(data.phienDauGiaId)}
                                                         type="button"
                                                     >
-                                                        <NavLink to={`/daugia/room/${data.phienDauGiaId}`}>
-                                                            Tham gia đấu giá
-                                                        </NavLink>
+                                                        Tham gia đấu giá
                                                     </button>
                                                 </div>
                                             </div>
@@ -198,15 +245,19 @@ function DanhSachDangDauGia() {
                     <div className="col-span-full mt-8 mb-8">
                         <div className="text-right">
                             <Pagination
-                            // current={currentPage}
-                            // pageSize={pageSize}
-                            // total={isSearching ? filteredData.length : postData.length}
-                            // onChange={handlePageChange}
+                                current={currentPage}
+                                pageSize={pageSize}
+                                total={isSearching ? filteredData.length : listDangDauGia.length}
+                                onChange={handlePageChange}
                             />
                         </div>
                     </div>
                 </div>
             </div>
+            <ModalNotificationLogin
+                isModalOpen={isShowModalNotificationLogin}
+                handleClose={handleCloseModal}
+            />
         </>
     );
 }

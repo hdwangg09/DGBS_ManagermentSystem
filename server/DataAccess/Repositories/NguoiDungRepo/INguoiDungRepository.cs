@@ -12,7 +12,7 @@ namespace DataAccess.Repositories.NguoiDungRepo
     public interface INguoiDungRepository
     {
         //Login
-        bool isLogin(UserReq user);
+        UserLoginDTO isLogin(UserReq user);
         bool isExistingEmail(string email);
         bool isExistingPhone(string phoneNumber);
         //Register

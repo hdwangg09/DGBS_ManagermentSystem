@@ -10,13 +10,21 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     const user = getUserInLocalStorage();
+    // }, []);
+    // const getUserInLocalStorage = () => {
+    //     const loggedInUser = localStorage.getItem('userLogined');
+    //     return loggedInUser;
+    // }
     const onLogin = async (values) => {
         setIsLoading(true);
         try {
             const response = await login(values.SoDienThoai, values.Password);
             if (response && response.code === 200) {
-                navigate("/");
-                toast.success(response.message);
+                localStorage.setItem('userLogined', JSON.stringify(response.data));
+                window.location.href = '/';
+                // toast.success(response.message);
             } else if (response && response.code !== 200) {
                 toast.error(response.message);
             } else {

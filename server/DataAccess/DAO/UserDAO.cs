@@ -32,19 +32,27 @@ namespace DataAccess.DAO
             }
         }
 
-        public bool isLogin(UserReq user)
+        public UserLoginDTO isLogin(UserReq user)
         {
             try
             {
                 using (var context = new DgbsMsVer01Context())
                 {
-                    NguoiDung existUser = context.NguoiDungs.SingleOrDefault(u => u.SoDienThoai == user.SoDienThoai && u.Password == user.Password);
-                    return existUser != null ? true : false;
+                    NguoiDung existUser = context.NguoiDungs
+                        .Include(u => u.Role)
+                        .SingleOrDefault(u => u.SoDienThoai == user.SoDienThoai && u.Password == user.Password);
+                    return existUser != null ? new UserLoginDTO
+                    {
+                        NguoiDungId = existUser.NguoiDungId,
+                        HoTen = existUser.HoTen,
+                        RoleID = existUser.Role.RoleId
+                    } 
+                    : null;
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
 
