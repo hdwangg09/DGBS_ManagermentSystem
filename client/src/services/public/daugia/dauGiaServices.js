@@ -1,17 +1,20 @@
-// import axios from "../../customize-axios";
+import axios from "../../customize-axios";
 
-// const getListBienSoCongBo = () => {
-//     return axios.get(`user/bienso`);
-// };
-// const getListBienSoDauGiaSau24H = () => {
-//     return axios.get(`user/bienso/today`);
-// };
-// const getListBienSoDangDauGia = () => {
-//     return axios.get(`user/bienso/now`);
-// };
-
-// export {
-//     getListBienSoCongBo,
-//     getListBienSoDauGiaSau24H,
-//     getListBienSoDangDauGia
-// };
+const getListLichSuInRoom = (dauGiaId) => {
+    return axios.get(`user/daugia/lichsudaugia/${dauGiaId}`);
+};
+const traGiaInDauGiaRoomAPI = (phienDauGiaId, nguoiDungId, soTien, thoiGian) => {
+    return axios.post(`user/daugia/add/`, {
+        phienDauGiaId, nguoiDungId, soTien, thoiGian
+    });
+};
+const updateWinnerDauGiaAPI = (phienDauGiaId, BienSoId) => {
+    return axios.post(`user/daugia/room/winner/`, {
+        phienDauGiaId, BienSoId
+    });
+};
+export {
+    getListLichSuInRoom,
+    traGiaInDauGiaRoomAPI,
+    updateWinnerDauGiaAPI,
+};

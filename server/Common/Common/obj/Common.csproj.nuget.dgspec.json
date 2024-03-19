@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj": {}
+    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj": {
+    "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\hdwan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Common\\Common\\obj\\",
+        "outputPath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Common\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hdwan\\AppData\\Roaming\\NuGet\\NuGet.Config",

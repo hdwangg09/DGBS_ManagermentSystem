@@ -19,5 +19,7 @@ public partial class LichSuDauGium
 
     public string? GhiChu { get; set; }
 
+    public virtual NguoiDung? NguoiDung { get; set; }
+
     public virtual DauGium? PhienDauGia { get; set; }
 }

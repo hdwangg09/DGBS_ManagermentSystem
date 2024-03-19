@@ -1,5 +1,6 @@
 ﻿using Common.DTOs;
 using Common.Models;
+using Common.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,16 @@ namespace DataAccess.Repositories.DauGiaRepo
     {
         //Admin
         List<DauGiaDTO> GetListDauGiaInfor();
-        DauGiaDTO GetDauGiaDetails(int dauGiaID);
         bool AddNewDauGia(DauGium newDauGia);
         bool UpdateDauGia(DauGium dauGia);
         bool ChangeStatusDauGia(int id, int newStatus);
         //User
         List<KetQuaDauGiaDTO> GetListKetQuaDauGia();
         List<DauGiaDTO> GetListDangDauGia();
+        DauGiaDTO GetDauGiaDetails(int dauGiaID);
+        List<LichSuDauGiaResDTO> GetLichSuDauGia(int dauGiaID);
+
+        bool User_AddUserDauGia(DauGiaUserReq dauGiaUserReq);
+        bool User_UpdateWinnerDauGia(DauGiaWinnerRequest winerReq);
     }
 }

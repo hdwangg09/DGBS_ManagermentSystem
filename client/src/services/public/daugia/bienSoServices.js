@@ -12,10 +12,15 @@ const getListBienSoDangDauGia = () => {
 const getListKetQuaDauGia = () => {
     return axios.get(`user/daugia/ketqua`);
 };
+const geBienSoDetailsInRoom = (dauGiaId) => {
+    return axios.get(`user/daugia/infor/${dauGiaId}`);
+};
+
 
 export {
     getListBienSoCongBo,
     getListBienSoDauGiaSau24H,
     getListBienSoDangDauGia,
-    getListKetQuaDauGia
+    getListKetQuaDauGia,
+    geBienSoDetailsInRoom
 };

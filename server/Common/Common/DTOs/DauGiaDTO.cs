@@ -9,7 +9,7 @@ namespace Common.DTOs
     public class DauGiaDTO
     {
         public int PhienDauGiaId { get; set; }
-
+        public int? BienSoId { get; set; }
         public string? BienSo{ get; set; }
 
         public string? LoaiXe { get; set; }

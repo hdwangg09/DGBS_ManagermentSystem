@@ -1,6 +1,7 @@
 ﻿using Common.Constants;
 using Common.DTOs;
 using Common.Models;
+using Common.Request;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -74,27 +75,51 @@ namespace DataAccess.DAO
                 using (var context = new DgbsMsVer01Context())
                 {
                     daugiaDetails = context.DauGia
-                       .Include(d => d.BienSo)
-                       .Include(d => d.NguoiThangCuocNavigation)
-                       .Where(d => d.PhienDauGiaId == dauGiaID)
-                       .Select(d => new DauGiaDTO
-                       {
-                           PhienDauGiaId = d.PhienDauGiaId,
-                           BienSo = d.BienSo.SoBien,
-                           LoaiXe = d.BienSo.LoaiXe.LoaiXeName,
-                           ThanhPho = d.BienSo.ThanhPho.TenThanhPho,
-                           NguoiThangCuoc = d.NguoiThangCuocNavigation.HoTen,
-                           SoDienThoai = d.NguoiThangCuocNavigation.SoDienThoai,
-                           NgayTao = d.NgayTao,
-                           GiaKhoiDiem = d.GiaKhoiDiem,
-                           ThoiGianBatDau = d.ThoiGianBatDau,
-                           ThoiGianKetThuc = d.ThoiGianKetThuc,
-                           TrangThai = d.TrangThai,
-                           GhiChu = d.GhiChu
-                       })
-                       .FirstOrDefault();
-
-
+                            //.Include(d => d.NguoiThangCuocNavigation)
+                            .Include(d => d.BienSo)
+                            .Include(d => d.LichSuDauGia)
+                            .Where(d => d.PhienDauGiaId == dauGiaID)
+                            .Select(d => new DauGiaDTO
+                            {
+                                PhienDauGiaId = d.PhienDauGiaId,
+                                BienSoId = d.BienSo.BienSoId,
+                                BienSo = d.BienSo.SoBien,
+                                LoaiXe = d.BienSo.LoaiXe.LoaiXeName,
+                                ThanhPho = d.BienSo.ThanhPho.TenThanhPho,
+                                ThoiGianBatDau = d.ThoiGianBatDau,
+                                ThoiGianKetThuc = d.ThoiGianKetThuc,
+                                NguoiThangCuoc = d.NguoiThangCuocNavigation.HoTen,
+                                GiaKhoiDiem = d.GiaKhoiDiem,
+                                GiaCaoNhat = d.LichSuDauGia.Max(ls => ls.SoTien),
+                                TrangThai = d.TrangThai
+                            })
+                            .FirstOrDefault();
+                    return daugiaDetails;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+                return null;
+            }
+        }
+        public List<LichSuDauGiaResDTO> GetLichSuDauGia(int dauGiaID)
+        {
+            List<LichSuDauGiaResDTO> daugiaDetails = null;
+            try
+            {
+                using (var context = new DgbsMsVer01Context())
+                {
+                    daugiaDetails = context.LichSuDauGia
+                        .Include(ls => ls.NguoiDung)
+                        .Where(ls => ls.PhienDauGiaId == dauGiaID)
+                        .Select(d => new LichSuDauGiaResDTO
+                        {
+                            SoTien = d.SoTien,
+                            nguoiDungName = d.NguoiDung.HoTen,
+                            ThoiGian = d.ThoiGian
+                        })
+                         .ToList();
                     return daugiaDetails;
                 }
             }
@@ -197,7 +222,7 @@ namespace DataAccess.DAO
                             GiaCuoiCung = d.LichSuDauGia
                                             .Where(ls => ls.NguoiDungId == d.NguoiThangCuocNavigation.NguoiDungId)
                                             .GroupBy(ls => ls.NguoiDungId)
-                                            .Select(group => group.Max(ls => ls.SoTien)) 
+                                            .Select(group => group.Max(ls => ls.SoTien))
                                             .FirstOrDefault(),
                         })
                         .ToList();
@@ -244,5 +269,88 @@ namespace DataAccess.DAO
                 return null;
             }
         }
+        public bool User_AddUserDauGia(DauGiaUserReq dauGiaUserReq)
+        {
+            try
+            {
+                using (var context = new DgbsMsVer01Context())
+                {
+                    var dauGiaInfor = context.DauGia.SingleOrDefault(d => d.PhienDauGiaId == dauGiaUserReq.PhienDauGiaId);
+                    if (dauGiaUserReq.ThoiGian > dauGiaInfor.ThoiGianKetThuc)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        LichSuDauGium ls = new LichSuDauGium
+                        {
+                            PhienDauGiaId = dauGiaUserReq.PhienDauGiaId,
+                            NguoiDungId = dauGiaUserReq.NguoiDungId,
+                            SoTien = dauGiaUserReq.SoTien,
+                            ThoiGian = dauGiaUserReq.ThoiGian
+                        };
+                        context.LichSuDauGia.Add(ls);
+                        int count = context.SaveChanges();
+                        return count > 0 ? true : false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+                return false;
+            }
+        }
+        public bool User_UpdateWinnerDauGia(DauGiaWinnerRequest winerReq)
+        {
+            try
+            {
+                using (var context = new DgbsMsVer01Context())
+                {
+                    var dauGiaExisted = context.DauGia
+                        .Include(dg => dg.BienSo)
+                        .Include(dg => dg.LichSuDauGia)
+                        .Where(d => d.PhienDauGiaId == winerReq.PhienDauGiaId && d.BienSoId == winerReq.BienSoId && d.TrangThai == Constants.DauGiaStatus.DangDauGia)
+                        .SingleOrDefault();
+
+                    if (dauGiaExisted != null)
+                    {
+                        var maxSoTien = context.LichSuDauGia
+                            .Where(ls => ls.PhienDauGiaId == winerReq.PhienDauGiaId)
+                            .Max(ls => ls.SoTien);
+                        if(maxSoTien == null)
+                        {
+                            dauGiaExisted.TrangThai = Constants.DauGiaStatus.DaKetThuc;
+                            dauGiaExisted.BienSo.TrangThai = Constants.BienSoStatus.Dong;
+                            int count = context.SaveChanges();
+                            return count > 0;
+                        }
+
+                        int? nguoiDungId = context.LichSuDauGia
+                            .Where(ls => ls.PhienDauGiaId == winerReq.PhienDauGiaId && ls.SoTien == maxSoTien)
+                            .Select(ls => (int?)ls.NguoiDungId)
+                            .SingleOrDefault();
+
+                        if (nguoiDungId.HasValue)
+                        {
+                            dauGiaExisted.NguoiThangCuoc = nguoiDungId.Value;
+                            dauGiaExisted.TrangThai = Constants.DauGiaStatus.DaKetThuc;
+                            dauGiaExisted.BienSo.TrangThai = Constants.BienSoStatus.Dong;
+                            int count = context.SaveChanges();
+                            return count > 0;
+                        }
+                    }
+
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+                return false;
+            }
+        }
+
     }
 }

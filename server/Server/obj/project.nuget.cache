@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KVcVuZTGAxKglHYMXB7ADSZNCkn0D9SIEggswECwVKpHn471iPXeHjipjXFVxGRY4shmqBXkJOFdeF0r2bih+w==",
+  "dgSpecHash": "pjFHn1IBjTrML0ngClQFhBtNWyqk7ILilHuwvrTgJy5nCWdJhax20lQd/LUAKW+k0n+HhIbnFvzzfqiULosTww==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\Server\\Server\\Server.csproj",
+  "projectFilePath": "C:\\Users\\hdwan\\OneDrive\\Desktop\\PRN231\\Coding\\Class\\DGBS_ManagermentSystem\\server\\Server\\Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hdwan\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\hdwan\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

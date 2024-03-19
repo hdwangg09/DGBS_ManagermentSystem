@@ -32,7 +32,7 @@ namespace Server.Controllers
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy danh sách thành công.";
                 response.Data = dauGiaList;
-               return response;
+                return response;
 
             }
             catch (Exception ex)
@@ -40,11 +40,11 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-               return response;
+                return response;
             }
 
         }
-       
+
         [HttpGet("admin/daugia/{dauGiaId}")]
         public async Task<ActionResult<BaseResponse<object>>> Admin_DauGiaDetails(int dauGiaId)
         {
@@ -58,7 +58,7 @@ namespace Server.Controllers
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy thông tin thành công.";
                 response.Data = dauGium;
-               return response;
+                return response;
 
             }
             catch (Exception ex)
@@ -66,11 +66,11 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-               return response;
+                return response;
             }
 
         }
-   
+
         [HttpPost("admin/daugia/create")]
         public async Task<ActionResult<BaseResponse<object>>> Admin_CreateDauGia([FromBody] PhienDauGiaReq dauGiaReq)
         {
@@ -95,14 +95,14 @@ namespace Server.Controllers
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Thêm phiên đấu giá thành công.";
-                   return response;
+                    return response;
                 }
                 else
                 {
                     response.Error = true;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Có lỗi, vui lòng thử lại.";
-                   return response;
+                    return response;
                 }
 
             }
@@ -111,11 +111,11 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-               return response;
+                return response;
             }
 
         }
-      
+
         [HttpPost("admin/daugia/update")]
         public async Task<ActionResult<BaseResponse<object>>> Admin_UpdateDauGia([FromBody] PhienDauGiaReq dauGiaReq)
         {
@@ -138,14 +138,14 @@ namespace Server.Controllers
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Cập nhật thành công.";
-                   return response;
+                    return response;
                 }
                 else
                 {
                     response.Error = true;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Có lỗi, vui lòng thử lại.";
-                   return response;
+                    return response;
                 }
 
             }
@@ -154,10 +154,10 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-               return response;
+                return response;
             }
         }
-        
+
         [HttpPost("admin/daugia/changeStatus/{dauGiaId}/{newStatus}")]
         public async Task<ActionResult<BaseResponse<object>>> Admin_ChangeStatusDauGia(int dauGiaId, int newStatus)
         {
@@ -171,14 +171,14 @@ namespace Server.Controllers
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
                     response.Message = "Đổi trạng thái thành công.";
-                   return response;
+                    return response;
                 }
                 else
                 {
                     response.Error = false;
                     response.Code = HttpStatusCode.BadRequest;
                     response.Message = "Có lỗi vui lòng thử lại sau.";
-                   return response;
+                    return response;
                 }
 
             }
@@ -187,7 +187,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-               return response;
+                return response;
             }
 
         }
@@ -203,7 +203,7 @@ namespace Server.Controllers
                 response.Code = HttpStatusCode.OK;
                 response.Message = "Lấy danh sách thành công.";
                 response.Data = dauGiaList;
-               return response;
+                return response;
 
             }
             catch (Exception ex)
@@ -211,7 +211,7 @@ namespace Server.Controllers
                 response.Error = true;
                 response.Code = HttpStatusCode.BadRequest;
                 response.Message = "Có lỗi,vui lòng thử lại.";
-               return response;
+                return response;
             }
 
         }
@@ -228,6 +228,111 @@ namespace Server.Controllers
                 response.Data = dauGiaList;
                 return response;
 
+            }
+            catch (Exception ex)
+            {
+                response.Error = true;
+                response.Code = HttpStatusCode.BadRequest;
+                response.Message = "Có lỗi,vui lòng thử lại.";
+                return response;
+            }
+
+        }
+        [HttpGet("user/daugia/infor/{dauGiaId}")]
+        public async Task<ActionResult<BaseResponse<object>>> User_DauGiaInfor(int dauGiaId)
+        {
+            BaseResponse<object> response = new BaseResponse<object>(); ;
+            try
+            {
+                DauGiaDTO dauGiaInfor = _dauGiaRepository.GetDauGiaDetails(dauGiaId);
+                response.Error = false;
+                response.Code = HttpStatusCode.OK;
+                response.Message = "Lấy danh sách thành công.";
+                response.Data = dauGiaInfor;
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                response.Error = true;
+                response.Code = HttpStatusCode.BadRequest;
+                response.Message = "Có lỗi,vui lòng thử lại.";
+                return response;
+            }
+
+        }
+        [HttpGet("user/daugia/lichsudaugia/{dauGiaId}")]
+        public async Task<ActionResult<BaseResponse<object>>> User_GetListLichSuDauGia(int dauGiaId)
+        {
+            BaseResponse<object> response = new BaseResponse<object>(); ;
+            try
+            {
+                List<LichSuDauGiaResDTO> lichSuDauGiaInfor = _dauGiaRepository.GetLichSuDauGia(dauGiaId);
+                response.Error = false;
+                response.Code = HttpStatusCode.OK;
+                response.Message = "Lấy danh sách thành công.";
+                response.Data = lichSuDauGiaInfor;
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                response.Error = true;
+                response.Code = HttpStatusCode.BadRequest;
+                response.Message = "Có lỗi,vui lòng thử lại.";
+                return response;
+            }
+
+        }
+        [HttpPost("user/daugia/add")]
+
+        public async Task<ActionResult<BaseResponse<object>>> User_AddUserDauGia(DauGiaUserReq dauGiaUserReq)
+        {
+            BaseResponse<object> response = new BaseResponse<object>(); ;
+            try
+            {
+                bool result = _dauGiaRepository.User_AddUserDauGia(dauGiaUserReq);
+                if (result)
+                {
+                    response.Error = false;
+                    response.Code = HttpStatusCode.OK;
+                    response.Message = "Trả giá thành công.";
+                    return response;
+                }
+
+                response.Error = true;
+                response.Code = HttpStatusCode.BadRequest;
+                response.Message = "Yêu cầu không hợp lệ.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Error = true;
+                response.Code = HttpStatusCode.BadRequest;
+                response.Message = "Có lỗi,vui lòng thử lại.";
+                return response;
+            }
+
+        }
+        [HttpPost("user/daugia/room/winner")]
+        public async Task<ActionResult<BaseResponse<object>>> User_UpdateWinnerDauGia(DauGiaWinnerRequest winerReq)
+        {
+            BaseResponse<object> response = new BaseResponse<object>(); ;
+            try
+            {
+                bool result = _dauGiaRepository.User_UpdateWinnerDauGia(winerReq);
+                if (result)
+                {
+                    response.Error = false;
+                    response.Code = HttpStatusCode.OK;
+                    response.Message = "Cập nhật người chiến thắng thành công.";
+                    return response;
+                }
+
+                response.Error = true;
+                response.Code = HttpStatusCode.BadRequest;
+                response.Message = "Có lỗi,vui lòng thử lại.";
+                return response;
             }
             catch (Exception ex)
             {

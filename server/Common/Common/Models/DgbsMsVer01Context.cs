@@ -107,13 +107,16 @@ public partial class DgbsMsVer01Context : DbContext
             entity.Property(e => e.NguoiDungId).HasColumnName("nguoi_dung_id");
             entity.Property(e => e.PhienDauGiaId).HasColumnName("phien_dau_gia_id");
             entity.Property(e => e.SoTien)
-                .HasMaxLength(20)
-                .IsFixedLength()
+                .HasColumnType("money")
                 .HasColumnName("so_tien");
             entity.Property(e => e.ThoiGian)
                 .HasColumnType("datetime")
                 .HasColumnName("thoi_gian");
             entity.Property(e => e.TrangThai).HasColumnName("trang_thai");
+
+            entity.HasOne(d => d.NguoiDung).WithMany(p => p.LichSuDauGia)
+                .HasForeignKey(d => d.NguoiDungId)
+                .HasConstraintName("FK_Lich_su_dau_gia_Nguoi_Dung");
 
             entity.HasOne(d => d.PhienDauGia).WithMany(p => p.LichSuDauGia)
                 .HasForeignKey(d => d.PhienDauGiaId)

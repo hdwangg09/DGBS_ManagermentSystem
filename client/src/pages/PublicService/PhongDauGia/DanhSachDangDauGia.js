@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
@@ -20,13 +20,23 @@ function DanhSachDangDauGia() {
     const [isInputEmpty, setIsInputEmpty] = useState(true);
     const [remainingTime, setRemainingTime] = useState(null);
     const [userLogined, setUserLogined] = useState(false);
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        getUserInLocalStorage();
+    }, []);
+    const getUserInLocalStorage = () => {
+        const loggedInUser = localStorage.getItem('userLogined');
+        if (loggedInUser) {
+            setUserLogined(true);
+        }
+    }
     useEffect(() => {
         getListDangDauGiaInfor();
     }, []);
 
     const getListDangDauGiaInfor = async () => {
-        setLoading(true);
+        // setLoading(true);
         try {
             const res = await getListBienSoDangDauGia();
             console.log(res.data)
@@ -112,7 +122,7 @@ function DanhSachDangDauGia() {
 
     const handleToJoinDauGia = (phienDauGiaId) => {
         if (userLogined) {
-            navigator(`/daugia/room`)
+            navigate(`/daugia/room/${phienDauGiaId}`)
         } else {
             handleOpenModalNotificationLogin();
         }
@@ -215,9 +225,6 @@ function DanhSachDangDauGia() {
                                                 <p className="mb-4 font-sans text-sm italic antialiased font-normal leading-relaxed text-gray-700">
                                                     Kết thúc sau: {getRemainingTime(data?.thoiGianKetThuc)}
                                                 </p>
-                                                {/* <p className="block mb-2 font-sans text-xl antialiased  tracking-normal text-gray-900">
-                                        hihi
-                                    </p> */}
                                                 <p className="block mb-1.5 font-sans text-base antialiased font-normal leading-relaxed text-gray-700 truncate-text">
                                                     Giá khởi điểm: {formatCurrency(data?.giaKhoiDiem)}
                                                 </p>

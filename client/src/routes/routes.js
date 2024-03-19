@@ -22,7 +22,7 @@ const publicRoutes = [
     { path: "/", component: DanhSachCongBo, layout: UserLayout },
     { path: "/daugia/today", component: SapDauGia, layout: UserLayout },
     { path: "/daugia/now", component: DanhSachDangDauGia, layout: UserLayout },
-    { path: "/daugia/room", component: PhongDauGia, layout: UserLayout },
+    { path: "/daugia/room/:dauGiaId", component: PhongDauGia, layout: UserLayout },
     { path: "/daugia/result", component: KetQua, layout: UserLayout },
     { path: "*", component: NotFound },
 ];

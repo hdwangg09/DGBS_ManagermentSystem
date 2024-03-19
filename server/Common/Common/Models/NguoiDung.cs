@@ -25,5 +25,7 @@ public partial class NguoiDung
 
     public virtual ICollection<DauGium> DauGia { get; set; } = new List<DauGium>();
 
+    public virtual ICollection<LichSuDauGium> LichSuDauGia { get; set; } = new List<LichSuDauGium>();
+
     public virtual Role? Role { get; set; }
 }
