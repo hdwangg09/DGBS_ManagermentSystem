@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logoName from "../../../assets/images/LogoDauGia.png";
 import ModalLogin from "./ModalLogin";
 import { login } from "../../../services/public/account/loginServices"
-function ModalNotificationLogin({ isModalOpen, handleClose }) {
+function ModalNotificationLogin({ isModalOpen, handleClose, phienDauGiaToJoin }) {
 
     const [isShowModalLogin, setIsShowModalLogin] = useState(false);
 
@@ -56,6 +56,7 @@ function ModalNotificationLogin({ isModalOpen, handleClose }) {
             <ModalLogin
                 isModalOpen={isShowModalLogin}
                 handleClose={handleCloseModal}
+                phienDauGiaToJoin={phienDauGiaToJoin}
             />
         </>
     );

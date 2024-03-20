@@ -25,14 +25,20 @@ function PhongDauGia() {
     const [soTienUser, setSoTienUser] = useState(0);
     const [isDauGia, setIsDauGia] = useState(false);
     const [userId, setUserId] = useState();
-    const [userIdToWin, setUserIdToWin] = useState();
+    let timesToAddWinner = 0;
+
+    const navigate = useNavigate();
     useEffect(() => {
         getUserInLocalStorage();
+
     }, []);
     const getUserInLocalStorage = () => {
         const loggedInUser = localStorage.getItem('userLogined');
+        if (loggedInUser == null) {
+            navigate("/login");
+            return;
+        }
         const loggedInUserParse = JSON.parse(loggedInUser);
-        console.log(loggedInUserParse.nguoiDungId);
         setUserId(loggedInUserParse.nguoiDungId)
     }
     useEffect(() => {
@@ -57,22 +63,11 @@ function PhongDauGia() {
         if (bienSoData && endTime) {
             const interval = setInterval(() => {
                 getRemainingTime(endTime);
-                // if (remainingTime.every(unit => unit === 0)) {
-                //     handleAddWinnerDauGia();
-                // }
             }, 1000);
-
             return () => clearInterval(interval);
         }
     }, [bienSoData, endTime]);
-    // useEffect(() => {
-    //     if (bienSoData && bienSoData?.trangThai == 1) {
-    //         if (remainingTime.every(unit => unit <= 0)) {
-    //             handleAddWinnerDauGia();
-    //             return;
-    //         }
-    //     }
-    // }, [bienSoData, remainingTime]);
+
 
     const getBienSoInforInRoom = async (dauGiaId) => {
         try {
@@ -124,6 +119,7 @@ function PhongDauGia() {
         }
     }
     const handleAddWinnerDauGia = async () => {
+
         try {
             const response = await updateWinnerDauGiaAPI(dauGiaId, bienSoData?.bienSoId);
             if (response && response.code === 200) {
@@ -137,7 +133,8 @@ function PhongDauGia() {
             console.error(error);
         }
     }
-    const getRemainingTime = (endTime) => {
+
+    const getRemainingTime = async (endTime) => {
         const now = new Date();
         const end = new Date(endTime);
         const differenceInSeconds = (end - now) / 1000;
@@ -146,6 +143,17 @@ function PhongDauGia() {
         const minutes = Math.floor((differenceInSeconds % 3600) / 60);
         const seconds = Math.floor(differenceInSeconds % 60);
         setRemainingTime([days, hours, minutes, seconds]);
+
+        // console.log(bienSoData?.trangThai);
+        // console.log(timesToAddWinner);
+        if (
+            differenceInSeconds <= 0 &&
+            timesToAddWinner === 0 &&
+            bienSoData?.trangThai === 1
+        ) {
+            timesToAddWinner = 1;
+            await handleAddWinnerDauGia();
+        }
     };
     const columns = [
         {
@@ -154,12 +162,12 @@ function PhongDauGia() {
             width: 100,
             render: (text, record) => <p>{text}</p>,
         },
-        {
-            title: "Số tiền",
-            dataIndex: "soTien",
-            width: 100,
-            render: (text, record) => <p>{formatCurrency(text)}</p>,
-        },
+        // {
+        //     title: "Số tiền",
+        //     dataIndex: "soTien",
+        //     width: 100,
+        //     render: (text, record) => <p>{formatCurrency(text)}</p>,
+        // },
         {
             title: "Thời gian",
             dataIndex: "thoiGian",
@@ -221,9 +229,9 @@ function PhongDauGia() {
                                     <p className="block mt-4 mb-1.5 font-sans text-base antialiased font-normal leading-relaxed text-gray-700 truncate-text">
                                         Giá khởi điểm: {formatCurrency(bienSoData?.giaKhoiDiem)}
                                     </p>
-                                    <p className="block mb-4 font-sans text-base antialiased font-normal leading-relaxed text-gray-700 truncate-text">
+                                    {/* <p className="block mb-4 font-sans text-base antialiased font-normal leading-relaxed text-gray-700 truncate-text">
                                         Giá cao nhất: {formatCurrency(bienSoData?.giaCaoNhat)}
-                                    </p>
+                                    </p> */}
                                     {bienSoData?.nguoiThangCuoc != null ? (
                                         <p className="block mb-4 font-sans text-base antialiased font-normal leading-relaxed text-gray-700 truncate-text">
                                             Người thắng cuộc: {bienSoData?.nguoiThangCuoc}
@@ -277,11 +285,11 @@ function PhongDauGia() {
                                                             "Số tiền bạn trả phải lớn hơn giá khởi điểm."
                                                         );
                                                     }
-                                                    if (value && value <= bienSoData?.giaCaoNhat) {
-                                                        return Promise.reject(
-                                                            "Số tiền bạn trả phải lớn hơn số tiền cao nhất hiện tại."
-                                                        );
-                                                    }
+                                                    // if (value && value <= bienSoData?.giaCaoNhat) {
+                                                    //     return Promise.reject(
+                                                    //         "Số tiền bạn trả phải lớn hơn số tiền cao nhất hiện tại."
+                                                    //     );
+                                                    // }
                                                     return Promise.resolve();
                                                 },
                                             },

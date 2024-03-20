@@ -325,7 +325,7 @@ namespace Server.Controllers
                 {
                     response.Error = false;
                     response.Code = HttpStatusCode.OK;
-                    response.Message = "Cập nhật người chiến thắng thành công.";
+                    response.Message = "Phiên đấu giá đã kết thúc.";
                     return response;
                 }
 

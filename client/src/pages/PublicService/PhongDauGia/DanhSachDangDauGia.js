@@ -20,6 +20,7 @@ function DanhSachDangDauGia() {
     const [isInputEmpty, setIsInputEmpty] = useState(true);
     const [remainingTime, setRemainingTime] = useState(null);
     const [userLogined, setUserLogined] = useState(false);
+    const [phienDauGiaToJoin, setPhienDauGiaToJoin] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -124,13 +125,14 @@ function DanhSachDangDauGia() {
         if (userLogined) {
             navigate(`/daugia/room/${phienDauGiaId}`)
         } else {
-            handleOpenModalNotificationLogin();
+            handleOpenModalNotificationLogin(phienDauGiaId);
         }
     }
     const [isShowModalNotificationLogin, setIsShowModalNotificationLogin] = useState(false);
 
-    const handleOpenModalNotificationLogin = () => {
+    const handleOpenModalNotificationLogin = (phienDauGiaId) => {
         setIsShowModalNotificationLogin(true);
+        setPhienDauGiaToJoin(phienDauGiaId);
     };
 
     const handleCloseModal = () => {
@@ -264,6 +266,7 @@ function DanhSachDangDauGia() {
             <ModalNotificationLogin
                 isModalOpen={isShowModalNotificationLogin}
                 handleClose={handleCloseModal}
+                phienDauGiaToJoin={phienDauGiaToJoin}
             />
         </>
     );

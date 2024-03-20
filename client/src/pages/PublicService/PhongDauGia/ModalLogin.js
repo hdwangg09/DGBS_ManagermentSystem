@@ -7,7 +7,7 @@ import { Spin } from "antd";
 import { toast } from "react-toastify";
 import { login } from "../../../services/public/account/loginServices"
 
-function ModalLogin({ isModalOpen, handleClose }) {
+function ModalLogin({ isModalOpen, handleClose, phienDauGiaToJoin }) {
 
     const [form] = Form.useForm();
     const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ function ModalLogin({ isModalOpen, handleClose }) {
             const response = await login(values.SoDienThoai, values.Password);
             if (response && response.code === 200) {
                 localStorage.setItem('userLogined', JSON.stringify(response.data));
-                window.location.href = '/daugia/now';
+                window.location.href = `/daugia/room/${phienDauGiaToJoin}`;
                 handleClose();
                 // toast.success(response.message);
             } else if (response && response.code !== 200) {

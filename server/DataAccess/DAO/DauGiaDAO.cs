@@ -319,6 +319,42 @@ namespace DataAccess.DAO
                         var maxSoTien = context.LichSuDauGia
                             .Where(ls => ls.PhienDauGiaId == winerReq.PhienDauGiaId)
                             .Max(ls => ls.SoTien);
+                        //Nếu có người đấu giá
+                        if(maxSoTien != null)
+                        {
+                            var listUser = context.LichSuDauGia
+                                .Where(ls => ls.PhienDauGiaId == winerReq.PhienDauGiaId && ls.SoTien == maxSoTien)
+                                .ToList();
+                            if(listUser.Count > 1)
+                            {
+                                int? firstUserIdToWin = (int)listUser[0].NguoiDungId;
+                                if (firstUserIdToWin.HasValue)
+                                {
+                                    dauGiaExisted.NguoiThangCuoc = firstUserIdToWin.Value;
+                                    dauGiaExisted.TrangThai = Constants.DauGiaStatus.DaKetThuc;
+                                    //dauGiaExisted.BienSo.TrangThai = Constants.BienSoStatus.Dong;
+                                    int count = context.SaveChanges();
+                                    return count > 0;
+                                }
+                            }
+                            else if(listUser.Count == 1)
+                            {
+                                int? nguoiDungIdToWin = context.LichSuDauGia
+                                                       .Where(ls => ls.PhienDauGiaId == winerReq.PhienDauGiaId && ls.SoTien == maxSoTien)
+                                                       .Select(ls => (int?)ls.NguoiDungId)
+                                                       .SingleOrDefault();
+                                if (nguoiDungIdToWin.HasValue)
+                                {
+                                    dauGiaExisted.NguoiThangCuoc = nguoiDungIdToWin.Value;
+                                    dauGiaExisted.TrangThai = Constants.DauGiaStatus.DaKetThuc;
+                                    //dauGiaExisted.BienSo.TrangThai = Constants.BienSoStatus.Dong;
+                                    int count = context.SaveChanges();
+                                    return count > 0;
+                                }
+                            }
+                        }
+
+                        //Nếu không có người đấu giá
                         if(maxSoTien == null)
                         {
                             dauGiaExisted.TrangThai = Constants.DauGiaStatus.DaKetThuc;
@@ -326,22 +362,7 @@ namespace DataAccess.DAO
                             int count = context.SaveChanges();
                             return count > 0;
                         }
-
-                        int? nguoiDungId = context.LichSuDauGia
-                            .Where(ls => ls.PhienDauGiaId == winerReq.PhienDauGiaId && ls.SoTien == maxSoTien)
-                            .Select(ls => (int?)ls.NguoiDungId)
-                            .SingleOrDefault();
-
-                        if (nguoiDungId.HasValue)
-                        {
-                            dauGiaExisted.NguoiThangCuoc = nguoiDungId.Value;
-                            dauGiaExisted.TrangThai = Constants.DauGiaStatus.DaKetThuc;
-                            dauGiaExisted.BienSo.TrangThai = Constants.BienSoStatus.Dong;
-                            int count = context.SaveChanges();
-                            return count > 0;
-                        }
                     }
-
                     return false;
                 }
             }
